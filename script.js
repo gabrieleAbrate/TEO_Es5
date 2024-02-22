@@ -59,7 +59,11 @@ async function init(){
     //     `;
     // }
 
-    let risposta = await fetch('http://localhost:1337/saluto');
+    // let risposta = await fetch('http://localhost:1337/saluto?nome=marco');
+    let risposta = await fetch('http://localhost:1337/saluto2', {
+        method: 'POST',
+        body: 'marco'
+    });
     let testo = await risposta.text();
     alert(testo);
 }

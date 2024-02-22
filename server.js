@@ -17,6 +17,21 @@ disp.addServizio('/saluto', (req, res) => {
     res.end('ciao ' + parametri.nome);
 }); 
 
+disp.addServizio('/saluto2', (req, res) => {
+    let risp = '';
+    
+    // recupero dei parametri attraverso il body (dati in POST)
+    req.on('data', (dati) => {
+        risp += dati;
+    });
+    
+    // fine della richiesta
+    req.on('end', () => {
+        res.writeHead(200, header);
+        res.end('ciao ' + risp);
+    });
+});
+
 let server = http.createServer(gestioneRichieste);
 server.listen(1337);
 console.log('Server in ascolto sulla porta 1337');
